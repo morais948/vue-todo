@@ -25,7 +25,7 @@
                 active-class=""
             >
             <div
-                v-for="(tarefa, i) in tarefas" :key="i"
+                v-for="tarefa in $store.state.tarefas" :key="tarefa.id"
             >
                 <Tarefa
                     :tarefa="tarefa"
@@ -48,26 +48,12 @@ export default {
     data() {
         return {
             novaTarefa: null,
-            tarefas: [
-                {
-                    titulo: 'Ir ao Mercado',
-                    concluido: false
-                },
-                {
-                    titulo: 'Estudar',
-                    concluido: true
-                },
-                {
-                    titulo: 'Lavar o quarto',
-                    concluido: false
-                },
-            ]
         }
     },
     methods: {
         handleAddTarefa(){
-            this.tarefas.push({ titulo: this.novaTarefa, concluido: false })
-            this.novaTarefa = null
+           this.$store.dispatch('addTarefa', this.novaTarefa)
+           this.novaTarefa = null
         }
     }
 };

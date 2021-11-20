@@ -30,10 +30,10 @@
         color="teal lighten-3"
         dark
         prominent
-        src="./assets/images/bg.png"
+        src="https://picsum.photos/1980/1080/?blur"
     >
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Title</v-toolbar-title>
+        <v-toolbar-title>Tarefas</v-toolbar-title>
     </v-app-bar>
     
 
