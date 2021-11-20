@@ -18,11 +18,12 @@
                 </v-list-item-content>
 
                 <v-list-item-action>
-                    <v-btn
+                    <TarefaMenu />
+                    <!--<v-btn
                         @click.stop="handleRemoveTarefa(tarefa.id)"
                         icon>
                         <v-icon color="red darken-2">mdi-delete-empty</v-icon>
-                    </v-btn>
+                    </v-btn>-->
                 </v-list-item-action>
             </template>
         </v-list-item>
@@ -31,8 +32,12 @@
 </template>
 
 <script>
+import TarefaMenu from './TarefaMenu.vue'
 export default {
     name: 'Tarefa',
+    components: {
+        TarefaMenu,
+    },  
     props: [
         'tarefa'
     ],

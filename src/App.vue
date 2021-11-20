@@ -3,7 +3,7 @@
     <v-navigation-drawer app v-model="drawer">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6"> VueJS </v-list-item-title>
+          <!--<v-list-item-title class="text-h6"> VueJS </v-list-item-title>-->
           <v-list-item-subtitle> Menu </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
