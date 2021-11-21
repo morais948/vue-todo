@@ -16,20 +16,21 @@
                     label="Titulo"
                     outlined
                     placeholder="Informe o novo titulo"
+                    v-model="titulo"
                 ></v-text-field>
                 <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
                     color="red darken-1"
                     text
-                    @click="dialog = false"
+                    @click="$emit('fechaModal')"
                 >
                     cancelar
                 </v-btn>
                 <v-btn
                     color="grey"
                     text
-                    @click="dialog = false"
+                    @click="handleEditar()"
                 >
                     confirmar
                 </v-btn>
@@ -41,10 +42,21 @@
 
 <script>
 export default {
+    props: ['tarefa'],
     data () {
       return {
         dialog: true,
+        titulo: null
       }
+    },
+    methods: {
+        handleEditar(){
+            this.$store.dispatch('editarTarefa', { ...this.tarefa, titulo: this.titulo })
+            this.$emit('fechaModal')
+        }
+    },
+    created(){
+        this.titulo = this.tarefa.titulo
     },
 }
 </script>

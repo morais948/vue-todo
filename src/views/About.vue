@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
-    <h1>Em breve mais informações.</h1>
+  <div class="about ml-4 mt-2">
+    <p>Em breve mais informações.</p>
   </div>
 </template>

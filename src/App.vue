@@ -53,5 +53,8 @@ export default {
     ],
     right: null,
   }),
+  mounted(){
+    this.$store.dispatch('buscarTarefas')
+  }
 };
 </script>
