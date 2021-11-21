@@ -1,12 +1,17 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer app v-model="drawer">
-      <v-list-item>
-        <v-list-item-content>
-          <!--<v-list-item-title class="text-h6"> VueJS </v-list-item-title>-->
-          <v-list-item-subtitle> Menu </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+      <v-img 
+        src="https://picsum.photos/1980/1080/?blur"
+        dark
+        >
+        <v-list-item>
+          <v-list-item-content>
+            <!--<v-list-item-title class="text-h6"> VueJS </v-list-item-title>-->
+            <v-list-item-subtitle> Menu </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-img>
 
       <v-divider></v-divider>
 
@@ -31,9 +36,15 @@
         dark
         prominent
         src="https://picsum.photos/1980/1080/?blur"
+        gradient="to top right, rgba(19, 84, 122, .5), rgba(28, 100, 199, .8)"
+        height="140"
     >
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Tarefas</v-toolbar-title>
+
+        <v-toolbar-title style="width: 100%">
+          <InputTarefa />
+        </v-toolbar-title>
+   
     </v-app-bar>
     
 
@@ -44,7 +55,9 @@
 </template>
 
 <script>
+import InputTarefa from './components/InputTarefa.vue';
 export default {
+  components: { InputTarefa },
   data: () => ({
     drawer: null,
     items: [

@@ -8,23 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        tarefas: [
-            {
-                id: 1,
-                titulo: 'Ir ao Mercado',
-                concluido: false
-            },
-            {
-                id: 2,
-                titulo: 'Estudar',
-                concluido: true
-            },
-            {
-                id: 3,
-                titulo: 'Lavar o quarto',
-                concluido: false
-            },
-        ],
+        tarefas: [],
     },
     mutations: {
         buscarTarefas(state){
@@ -32,36 +16,38 @@ export default new Vuex.Store({
                 state.tarefas = res
             })
         },
-        addTarefa(state, titulo){
+    },
+    actions: {
+        addTarefa({ commit }, titulo){
             if(titulo){
                 db.collection('tarefas').add({
                     id: new Date().getTime(),
                     titulo, 
                     concluido: false
+                }).then(() => {
+                    commit('buscarTarefas')
                 })
             }
         },
-        removeTarefa(state, id){
-            state.tarefas = state.tarefas.filter(t => t.id !== id)
-        },
-        editarTarefa(state, novaTarefa){
-            let i = state.tarefas.findIndex(el => el.id === novaTarefa.id)
-            state.tarefas.splice(i, 1, novaTarefa)
-        }
-    },
-    actions: {
-        async addTarefa({ commit }, titulo){
-            await commit('addTarefa', titulo)
-            await commit('buscarTarefas')
-        },
         removeTarefa({ commit }, id){
-            commit('removeTarefa', id)
+            db.collection('tarefas').doc({ id }).delete().then(() => {
+                commit('buscarTarefas')
+            })
         },
         editarTarefa({ commit }, novaTarefa){
-            commit('editarTarefa', novaTarefa)
+            db.collection('tarefas').doc({ id: novaTarefa.id }).update({
+                titulo: novaTarefa.titulo
+            }).then(() => {
+                commit('buscarTarefas')
+            })
         },
         buscarTarefas({ commit }){
             commit('buscarTarefas')
+        },
+        marcarConcluida(_, tarefa){
+            db.collection('tarefas').doc({ id: tarefa.id }).update({
+                concluido: tarefa.concluido
+            })
         }
     },
     modules: {
